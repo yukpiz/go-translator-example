@@ -36,11 +36,9 @@ func main() {
 			gc.Status(http.StatusBadRequest)
 			return
 		}
-		errs := validate.Struct(req)
-
-		verrs := errs.(validator.ValidationErrors)
-		if len(verrs) > 0 {
-			gc.String(http.StatusBadRequest, verrs[0].Translate(en))
+		if err := validate.Struct(req); err != nil {
+			verrs := err.(validator.ValidationErrors)
+			gc.String(http.StatusBadRequest, verrs[0].Translate(ja))
 			return
 		}
 
