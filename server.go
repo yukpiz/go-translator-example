@@ -30,10 +30,10 @@ func main() {
 
 	r.GET("/hello", func(gc *gin.Context) {
 		req := struct {
-			Hello string `validate:"required"`
+			Hello int `validate:"required"`
 		}{}
 		if err := gc.BindQuery(&req); err != nil {
-			gc.Status(http.StatusBadRequest)
+			gc.String(http.StatusBadRequest, err.Error())
 			return
 		}
 		if err := validate.Struct(req); err != nil {
