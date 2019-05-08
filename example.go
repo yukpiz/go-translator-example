@@ -10,7 +10,7 @@ import (
 	"gopkg.in/go-playground/validator.v9"
 )
 
-func main() {
+func test() {
 	japanese := ja_JP.New()
 	english := en_US.New()
 	trans := ut.New(japanese, japanese, english)
